@@ -1,49 +1,183 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="TextoVoz">
-	<main class="container m-auto grid min-h-screen grid-rows-[auto,1fr,auto] px-4">
-		<header class="text-xl font-bold leading-[4rem]">TextoVoz</header>
-		<section class="flex flex-col gap-8">
-			<article class="flex gap-4 flex-wrap">
-				<div class="w-full max-w-[250px] space-y-2">
-					<label>Voz</label>
-					<select name="" id="" class="w-full p-2 border rounded-lg cursor-pointer outline-none">
-						<option value="">voice 1</option>
-						<option value="">voice 2</option>
+	<main class="container m-auto grid min-h-screen grid-rows-[auto,1fr,auto] px-4 min-w-[320px]">
+		<header class="text-2xl font-bold leading-[4rem] max-sm:text-xl">
+			TextoVoz
+		</header>
+		<section class="flex flex-col gap-6">
+			<article class="flex gap-6 flex-wrap max-sm:justify-center">
+				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px]">
+					<label>Idioma</label>
+					<select id="idioma" class="w-full p-2 border rounded-lg cursor-pointer outline-none hover:ring-1">
+						<option>Sin resultados</option>
 					</select>
 				</div>
-				<div class="w-full max-w-[150px] space-y-2">
+				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[250px]">
+					<label>Voz</label>
+					<select id="voz" class="w-full p-2 border rounded-lg cursor-pointer outline-none hover:ring-1">
+						<option>Sin resultados</option>
+					</select>
+				</div>
+				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px]">
 					<label>Tono</label>
-					<input type="range" name="" id="" class="w-full cursor-pointer">
+					<input type="range" id="tono" min="0" max="10" value="5" class="w-full my-2 cursor-pointer">
 				</div>
-				<div class="w-full max-w-[150px] space-y-2">
+				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px]">
 					<label>Velocidad</label>
-					<input type="range" name="" id="" class="w-full cursor-pointer">
+					<input type="range" id="velocidad" min="0" max="10" value="5" class="w-full my-2 cursor-pointer">
 				</div>
-				<div class="flex gap-2 items-end">
-					<button type="button" class="border rounded-lg p-2 text-green-600">
-						<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z" /></svg>
-					</button>
-					<button type="button" class="border rounded-lg p-2 text-gray-600">
-						<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 4h-10a3 3 0 0 0 -3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3 -3v-10a3 3 0 0 0 -3 -3z" /></svg>
-					</button>
-					<button type="button" class="border rounded-lg p-2 text-red-600">
-						<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 5.072a8 8 0 1 1 -3.995 7.213l-.005 -.285l.005 -.285a8 8 0 0 1 3.995 -6.643z" /></svg>
-					</button>
-					<div class="flex">
-						<button type="button" class="p-2">
-							<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8a5 5 0 0 1 0 8" /><path d="M17.7 5a9 9 0 0 1 0 14" /><path d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a.8 .8 0 0 1 1.5 .5v14a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5" /></svg>
-						</button>
-						<input type="range" class="w-full max-w-[150px] cursor-pointer">
-					</div>
+				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px]">
+					<label>Volumen</label>
+					<input id="volumen" type="range" min="0" max="10" value="10" class="w-full my-2 cursor-pointer">
 				</div>
 			</article>
-			<textarea name="" id="" class="border p-2 h-full outline-none rounded-lg"/>
+
+			<fieldset class="border p-2 h-full rounded-lg">
+				<legend>
+					<div class="flex gap-2 justify-center">
+						<button id="play" type="button" title="play" class="border rounded-lg p-2 text-green-600 group hover:bg-gray-600/20">
+							<svg class="group-active:scale-90"  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z" /></svg>
+						</button>
+						<button id="stop" type="button" title="parar" class="border rounded-lg p-2 text-gray-600 group hover:bg-gray-600/20">
+							<svg class="group-active:scale-90"  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 4h-10a3 3 0 0 0 -3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3 -3v-10a3 3 0 0 0 -3 -3z" /></svg>
+						</button>
+						<button id="record" type="button" title="grabar" class="border rounded-lg p-2 text-red-600 group hover:bg-gray-600/20 relative">
+							<span id="icon-record-anim" class="absolute hidden animate-ping z-[-1] size-4 left-0 right-0 top-0 bottom-0 m-auto rounded-full bg-red-500 opacity-75"></span>
+							<svg class="group-active:scale-90"  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 5.072a8 8 0 1 1 -3.995 7.213l-.005 -.285l.005 -.285a8 8 0 0 1 3.995 -6.643z" /></svg>
+						</button>
+					</div>
+				</legend>
+				<textarea id="text" class="p-1 h-full w-full min-h-64 outline-none"/>
+			</fieldset>
 		</section>
-		<footer class="text-center leading-[4rem] opacity-70">
+		<footer class="text-center leading-[3rem] opacity-60 text-sm">
 			Creado por 👨‍💻@joarieldev
 		</footer>
 	</main>
 </Layout>
+
+<script is:inline>
+	const idiomaSelect = document.getElementById("idioma")
+	const vozSelect = document.getElementById("voz")
+	const playButton = document.getElementById("play")
+	const stopButton = document.getElementById("stop")
+	const recordButton = document.getElementById("record")
+	const tonoInput = document.getElementById("tono")
+	const velocidadInput = document.getElementById("velocidad")
+	const volumenInput = document.getElementById("volumen")
+	const textTextArea = document.getElementById("text")
+	const iconRecordAnim = document.getElementById("icon-record-anim")
+
+	const synth = speechSynthesis
+	const message = new SpeechSynthesisUtterance()
+	const recognition = new webkitSpeechRecognition()
+	recognition.continuous = true
+	recognition.lang = 'es-AR'
+
+	let recordController = new AbortController()
+	let idiomaFilter = []
+	let isRecording = false
+	
+	const loadVoices=()=>{
+		const mySet = new Set()
+		synth.getVoices().forEach(voice => {
+			mySet.add(voice.lang)
+		})
+		const options = Array.from(mySet).map(item => {
+			return `<option value="${item}">${item}</option>`
+		})
+		options.unshift('<option>Seleccione</option>');
+		idiomaSelect.innerHTML = options
+	}
+
+	idiomaSelect.addEventListener("change", () => {
+		const value = idiomaSelect.value
+		idiomaFilter = synth.getVoices().filter(item=>item.lang === value)
+		const options = idiomaFilter.map((voice) => {
+			return `<option value="${voice.name}">${voice.name}</option>`
+		})
+		vozSelect.innerHTML = idiomaFilter.length !== 0 ? options : '<option>Sin resultados</option>'
+	})
+
+	vozSelect.addEventListener("change", () => {
+		const value = vozSelect.value
+		voiceFind = idiomaFilter.find(item => item.name === value)
+	})
+
+	playButton.addEventListener("click", () => {
+		const value = vozSelect.value
+		const voiceFind = idiomaFilter.find(item => item.name === value)
+		if (text !== '' && voiceFind) {
+			message.text = textTextArea.value
+			message.voice = voiceFind
+			message.pitch = tonoInput.value/5
+			message.rate = velocidadInput.value/5
+			message.volume = volumenInput.value/10
+			synth.speak(message)
+		}
+	})
+
+	stopButton.addEventListener("click", () => {
+		if(isRecording) {
+			endRecording()
+			iconRecordAnim.classList.add("hidden")
+		}
+		synth.cancel()
+	})
+
+	recordButton.addEventListener("click", () => {
+		if(!isRecording){
+			iconRecordAnim.classList.remove("hidden")
+			startRecording()
+		}
+	})
+
+	//Manejo del scroll para input-range
+	const scrollInputRange = (e, input) => {
+		if (e.deltaY < 0) {
+				input.value = Math.min(parseInt(input.value) + 1, input.max)
+		} else {
+				input.value = Math.max(parseInt(input.value) - 1, input.min)
+		}
+	}
+	tonoInput.addEventListener("wheel", (e) => {
+		e.preventDefault()
+		scrollInputRange(e, tonoInput)		
+	})
+	velocidadInput.addEventListener("wheel", (e) => {
+		e.preventDefault()
+		scrollInputRange(e, velocidadInput)
+	})
+	volumenInput.addEventListener("wheel", (e) => {
+		e.preventDefault()
+		scrollInputRange(e, volumenInput)
+	})
+
+
+	const startRecording = () => {
+		isRecording = true
+		recognition.start()
+		recognition.addEventListener('result', (event) => {
+			const transcript = Array.from(event.results)
+				.map((result) => result[0])
+				.map((result) => result.transcript)
+				.join(' ')
+			textTextArea.value = transcript
+		},{
+      signal: recordController.signal
+    })
+	}
+
+	const endRecording = () => {
+		isRecording=false
+		recognition.stop()
+		recordController.abort()
+    recordController = new AbortController()
+	}
+
+	document.body.onload = loadVoices
+
+</script>
