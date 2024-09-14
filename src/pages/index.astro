@@ -11,13 +11,13 @@ import Layout from '../layouts/Layout.astro'
 			<article class="flex gap-6 flex-wrap max-sm:justify-center">
 				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px] dark:text-white">
 					<label>Idioma</label>
-					<select id="idioma" class="w-full p-2 border rounded-lg cursor-pointer outline-none hover:border-[#625195] dark:bg-gray-900 border-gray-900 dark:border-white dark:hover:border-[#CC8EA5]">
+					<select id="idioma" class="w-full p-2 border rounded-lg cursor-pointer outline-none focus:border-[#625195] dark:bg-gray-900 border-gray-900 dark:border-white dark:focus:border-[#CC8EA5]">
 						<option>Sin resultados</option>
 					</select>
 				</div>
 				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[250px] dark:text-white">
 					<label>Voz</label>
-					<select id="voz" class="w-full p-2 border rounded-lg cursor-pointer outline-none hover:border-[#625195] dark:bg-gray-900 border-gray-900 dark:border-white dark:hover:border-[#CC8EA5]">
+					<select id="voz" class="w-full p-2 border rounded-lg cursor-pointer outline-none focus:border-[#625195] dark:bg-gray-900 border-gray-900 dark:border-white dark:focus:border-[#CC8EA5]">
 						<option>Sin resultados</option>
 					</select>
 				</div>
@@ -35,17 +35,17 @@ import Layout from '../layouts/Layout.astro'
 				</div>
 			</article>
 
-			<fieldset class="border p-2 h-full rounded-lg border-gray-900 dark:border-white dark:text-white">
+			<fieldset id="boxArea" class="border p-2 h-full rounded-lg border-gray-900 dark:border-white dark:text-white bg-gray-100 dark:bg-gray-900">
 				<legend>
 					<div class="flex gap-2 justify-center">
-						<button id="play" type="button" title="reproducir" class="border rounded-lg p-2 text-green-600 group hover:bg-[#62519533] border-gray-900 dark:border-white">
+						<button id="play" type="button" title="reproducir" class="bg-white dark:bg-gray-900 border rounded-lg p-2 text-green-600 group border-gray-900 dark:border-white">
 							<svg class="group-active:scale-90"  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z" /></svg>
 						</button>
-						<button id="stop" type="button" title="parar" class="border rounded-lg p-2 text-gray-600 group hover:bg-[#62519533] border-gray-900 dark:border-white">
+						<button id="stop" type="button" title="parar" class="bg-white dark:bg-gray-900 border rounded-lg p-2 text-gray-600 group border-gray-900 dark:border-white">
 							<svg class="group-active:scale-90"  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 4h-10a3 3 0 0 0 -3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3 -3v-10a3 3 0 0 0 -3 -3z" /></svg>
 						</button>
-						<button id="record" type="button" title="grabar" class="border rounded-lg p-2 text-red-600 group hover:bg-[#62519533] relative border-gray-900 dark:border-white">
-							<span id="icon-record-anim" class="absolute hidden animate-ping z-[-1] size-4 left-0 right-0 top-0 bottom-0 m-auto rounded-full bg-red-500 opacity-75"></span>
+						<button id="record" type="button" title="grabar" class="bg-white dark:bg-gray-900 border rounded-lg p-2 text-red-600 group border-gray-900 dark:border-white relative">
+							<span id="icon-record-anim" class="absolute hidden animate-ping size-4 left-0 right-0 top-0 bottom-0 m-auto rounded-full bg-red-500 opacity-75"></span>
 							<svg class="group-active:scale-90"  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 5.072a8 8 0 1 1 -3.995 7.213l-.005 -.285l.005 -.285a8 8 0 0 1 3.995 -6.643z" /></svg>							
 						</button>
 					</div>
@@ -53,13 +53,63 @@ import Layout from '../layouts/Layout.astro'
 				<textarea id="text" placeholder="Aqui tu mensaje de texto" class="p-1 h-full w-full min-h-64 outline-none bg-transparent dark:text-gray-100"/>
 			</fieldset>
 		</section>
-		<footer class="text-center leading-[3rem] opacity-70 text-sm dark:text-white">
+		<footer class="text-center leading-[2rem] opacity-70 text-sm dark:text-white">
 			Creado por 👨‍💻@joarieldev
 		</footer>
 		<button onclick="changeTheme()" class="fixed bottom-3 right-3 p-1 group transition">
 			<svg id="sun" class="size-6 sm:size-8 text-yellow-500 group-hover:scale-110 group-active:scale-100"  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 19a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" /><path d="M18.313 16.91l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.218 -1.567l.102 .07z" /><path d="M7.007 16.993a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" /><path d="M4 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" /><path d="M21 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" /><path d="M6.213 4.81l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.217 -1.567l.102 .07z" /><path d="M19.107 4.893a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z" /><path d="M12 2a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z" /><path d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z" /></svg>
 			<svg id="moon" class="size-6 sm:size-8 text-gray-200 group-hover:scale-110 group-active:scale-100"  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  ><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 1.992a10 10 0 1 0 9.236 13.838c.341 -.82 -.476 -1.644 -1.298 -1.31a6.5 6.5 0 0 1 -6.864 -10.787l.077 -.08c.551 -.63 .113 -1.653 -.758 -1.653h-.266l-.068 -.006l-.06 -.002z" /></svg>
 		</button>
+		<div id="alert" class="fixed hidden top-3 right-3 p-2  bg-white dark:bg-black rounded shadow w-full max-w-60">
+			<button class="absolute top-1 right-1" onclick="closeAlert()">
+				<svg class="size-3 sm:size-4  text-gray-900 dark:text-white"  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+			</button>
+			<h3 class="font-medium dark:text-white pb-1">Nota</h3>
+			<p class="dark:text-white">
+				Usa<span class="inline-flex items-center">
+					<svg class="size-4 my-0 mx-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+						<defs>
+							<radialGradient id="b" cx="161.8" cy="68.9" r="95.4" gradientTransform="matrix(1 0 0 -.95 0 248.8)" gradientUnits="userSpaceOnUse">
+								<stop offset=".7" stop-opacity="0"/>
+								<stop offset=".9" stop-opacity=".5"/>
+								<stop offset="1"/>
+							</radialGradient>
+							<radialGradient id="d" cx="-340.3" cy="63" r="143.2" gradientTransform="matrix(.15 -.99 -.8 -.12 176.6 -125.4)" gradientUnits="userSpaceOnUse">
+								<stop offset=".8" stop-opacity="0"/>
+								<stop offset=".9" stop-opacity=".5"/>
+								<stop offset="1"/>
+							</radialGradient>
+							<radialGradient id="e" cx="113.4" cy="570.2" r="202.4" gradientTransform="matrix(-.04 1 2.13 .08 -1179.5 -106.7)" gradientUnits="userSpaceOnUse">
+								<stop offset="0" stop-color="#35c1f1"/>
+								<stop offset=".1" stop-color="#34c1ed"/>
+								<stop offset=".2" stop-color="#2fc2df"/>
+								<stop offset=".3" stop-color="#2bc3d2"/>
+								<stop offset=".7" stop-color="#36c752"/>
+							</radialGradient>
+							<radialGradient id="f" cx="376.5" cy="568" r="97.3" gradientTransform="matrix(.28 .96 .78 -.23 -303.8 -148.5)" gradientUnits="userSpaceOnUse">
+								<stop offset="0" stop-color="#66eb6e"/>
+								<stop offset="1" stop-color="#66eb6e" stop-opacity="0"/>
+							</radialGradient>
+							<linearGradient id="a" x1="63.3" x2="241.7" y1="84" y2="84" gradientTransform="matrix(1 0 0 -1 0 266)" gradientUnits="userSpaceOnUse">
+								<stop offset="0" stop-color="#0c59a4"/>
+								<stop offset="1" stop-color="#114a8b"/>
+							</linearGradient>
+							<linearGradient id="c" x1="157.3" x2="46" y1="161.4" y2="40.1" gradientTransform="matrix(1 0 0 -1 0 266)" gradientUnits="userSpaceOnUse">
+								<stop offset="0" stop-color="#1b9de2"/>
+								<stop offset=".2" stop-color="#1595df"/>
+								<stop offset=".7" stop-color="#0680d7"/>
+								<stop offset="1" stop-color="#0078d4"/>
+							</linearGradient>
+						</defs>
+						<path fill="url(#a)" d="M235.7 195.5a93.7 93.7 0 0 1-10.6 4.7 101.9 101.9 0 0 1-35.9 6.4c-47.3 0-88.5-32.5-88.5-74.3a31.5 31.5 0 0 1 16.4-27.3c-42.8 1.8-53.8 46.4-53.8 72.5 0 74 68.1 81.4 82.8 81.4 7.9 0 19.8-2.3 27-4.6l1.3-.4a128.3 128.3 0 0 0 66.6-52.8 4 4 0 0 0-5.3-5.6Z" transform="translate(-4.6 -5)"/>
+						<path fill="url(#b)" d="M235.7 195.5a93.7 93.7 0 0 1-10.6 4.7 101.9 101.9 0 0 1-35.9 6.4c-47.3 0-88.5-32.5-88.5-74.3a31.5 31.5 0 0 1 16.4-27.3c-42.8 1.8-53.8 46.4-53.8 72.5 0 74 68.1 81.4 82.8 81.4 7.9 0 19.8-2.3 27-4.6l1.3-.4a128.3 128.3 0 0 0 66.6-52.8 4 4 0 0 0-5.3-5.6Z" opacity=".35" style="isolation:isolate" transform="translate(-4.6 -5)"/>
+						<path fill="url(#c)" d="M110.3 246.3A79.2 79.2 0 0 1 87.6 225a80.7 80.7 0 0 1 29.5-120c3.2-1.5 8.5-4.1 15.6-4a32.4 32.4 0 0 1 25.7 13 31.9 31.9 0 0 1 6.3 18.7c0-.2 24.5-79.6-80-79.6-43.9 0-80 41.6-80 78.2a130.2 130.2 0 0 0 12.1 56 128 128 0 0 0 156.4 67 75.5 75.5 0 0 1-62.8-8Z" transform="translate(-4.6 -5)"/>
+						<path fill="url(#d)" d="M110.3 246.3A79.2 79.2 0 0 1 87.6 225a80.7 80.7 0 0 1 29.5-120c3.2-1.5 8.5-4.1 15.6-4a32.4 32.4 0 0 1 25.7 13 31.9 31.9 0 0 1 6.3 18.7c0-.2 24.5-79.6-80-79.6-43.9 0-80 41.6-80 78.2a130.2 130.2 0 0 0 12.1 56 128 128 0 0 0 156.4 67 75.5 75.5 0 0 1-62.8-8Z" opacity=".41" style="isolation:isolate" transform="translate(-4.6 -5)"/>
+						<path fill="url(#e)" d="M157 153.8c-.9 1-3.4 2.5-3.4 5.6 0 2.6 1.7 5.2 4.8 7.3 14.3 10 41.4 8.6 41.5 8.6a59.6 59.6 0 0 0 30.3-8.3 61.4 61.4 0 0 0 30.4-52.9c.3-22.4-8-37.3-11.3-43.9C228 28.8 182.3 5 132.6 5a128 128 0 0 0-128 126.2c.5-36.5 36.8-66 80-66 3.5 0 23.5.3 42 10a72.6 72.6 0 0 1 30.9 29.3c6.1 10.6 7.2 24.1 7.2 29.5s-2.7 13.3-7.8 19.9Z" transform="translate(-4.6 -5)"/>
+						<path fill="url(#f)" d="M157 153.8c-.9 1-3.4 2.5-3.4 5.6 0 2.6 1.7 5.2 4.8 7.3 14.3 10 41.4 8.6 41.5 8.6a59.6 59.6 0 0 0 30.3-8.3 61.4 61.4 0 0 0 30.4-52.9c.3-22.4-8-37.3-11.3-43.9C228 28.8 182.3 5 132.6 5a128 128 0 0 0-128 126.2c.5-36.5 36.8-66 80-66 3.5 0 23.5.3 42 10a72.6 72.6 0 0 1 30.9 29.3c6.1 10.6 7.2 24.1 7.2 29.5s-2.7 13.3-7.8 19.9Z" transform="translate(-4.6 -5)"/>
+					</svg> 
+				</span>Microsoft Edge para obtener más voces.</p>
+		</div>
 	</main>
 </Layout>
 
@@ -80,12 +130,14 @@ import Layout from '../layouts/Layout.astro'
 	const recognition = new webkitSpeechRecognition()
 	recognition.continuous = true
 	recognition.lang = 'es-AR'
+	synth.cancel()
 
 	let recordController = new AbortController()
 	let idiomaFilter = []
 	let isRecording = false
 	
 	const loadVoices=()=>{
+		detectNavegador()
 		updateTheme(getTheme())
 		const mySet = new Set()
 		synth.getVoices().forEach(voice => {
@@ -113,32 +165,67 @@ import Layout from '../layouts/Layout.astro'
 	})
 
 	playButton.addEventListener("click", () => {
+		synth.cancel()
+		if (isRecording) {
+			endRecording()
+		}
 		const value = vozSelect.value
 		const voiceFind = idiomaFilter.find(item => item.name === value)
-		if (text !== '' && voiceFind) {
+		if (textTextArea.value !== '' && voiceFind) {
 			message.text = textTextArea.value
 			message.voice = voiceFind
 			message.pitch = tonoInput.value/5
 			message.rate = velocidadInput.value/5
 			message.volume = volumenInput.value/10
 			synth.speak(message)
+		}else{
+			if (textTextArea.value === '') {
+				warningAnimation("boxArea")
+			}
+			if (!voiceFind) {
+				warningAnimation("idioma")
+				warningAnimation("voz")
+			}
 		}
 	})
 
 	stopButton.addEventListener("click", () => {
-		if(isRecording) {
-			endRecording()
-			iconRecordAnim.classList.add("hidden")
-		}
 		synth.cancel()
+		if (isRecording) {
+			endRecording()
+		}
 	})
 
 	recordButton.addEventListener("click", () => {
+		synth.cancel()
 		if(!isRecording){
-			iconRecordAnim.classList.remove("hidden")
 			startRecording()
+		}else{
+			endRecording()
 		}
 	})
+
+	const warningAnimation = (id) => {
+		let delay = 0;
+		for (let i = 0; i < 3; i++) {
+			setTimeout(() => {
+				document.getElementById(id).classList.add("dark:border-red-400","border-red-500")
+				setTimeout(() => {
+					document.getElementById(id).classList.remove("dark:border-red-400","border-red-500")
+				}, 500);
+			}, delay);
+			delay += 1000
+		}
+	}
+	const detectNavegador = () => {
+		const userAgent = navigator.userAgent
+		if(!userAgent.includes("Edg")){
+			document.getElementById("alert").classList.remove("hidden")
+		}
+	}
+	const closeAlert = () => {
+		document.getElementById("alert").classList.add("hidden")
+	}
 
 	//Manejo del scroll para input-range
 	const scrollInputRange = (e, input) => {
@@ -164,6 +251,7 @@ import Layout from '../layouts/Layout.astro'
 	const startRecording = () => {
 		isRecording = true
 		recognition.start()
+		iconRecordAnim.classList.remove("hidden")
 		recognition.addEventListener('result', (event) => {
 			const transcript = Array.from(event.results)
 				.map((result) => result[0])
@@ -178,6 +266,7 @@ import Layout from '../layouts/Layout.astro'
 	const endRecording = () => {
 		isRecording=false
 		recognition.stop()
+		iconRecordAnim.classList.add("hidden")
 		recordController.abort()
     recordController = new AbortController()
 	}
