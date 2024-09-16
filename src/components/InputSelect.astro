@@ -1,0 +1,11 @@
+---
+interface Props {
+  id: string
+}
+
+const { id } = Astro.props
+---
+
+<select id={id} class="w-full p-2 border rounded-lg cursor-pointer outline-none focus:border-[#625195] dark:bg-gray-900 border-gray-900 dark:border-white dark:focus:border-[#CC8EA5]">
+  <slot/>
+</select>

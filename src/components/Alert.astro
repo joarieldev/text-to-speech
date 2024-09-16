@@ -1,0 +1,27 @@
+---
+import Edge from "../../public/Edge.astro"
+import X from "../../public/X.astro"
+---
+<div id="alert" class="fixed hidden top-3 right-3 p-2  bg-white dark:bg-black rounded shadow w-full max-w-60">
+  <button class="absolute top-1 right-1" onclick="closeAlert()">
+    <X class="size-3 sm:size-4  text-gray-900 dark:text-white"/>
+  </button>
+  <h3 class="font-medium dark:text-white pb-1">Nota</h3>
+  <p class="dark:text-white">
+    Usa<span class="inline-flex items-center">
+    <Edge class="size-4 my-0 mx-1"/>
+    </span>Microsoft Edge para obtener más voces.</p>
+</div>
+
+<script is:inline>
+  const detectNavegador = () => {
+    const userAgent = navigator.userAgent
+    if(!userAgent.includes("Edg")){
+      document.getElementById("alert").classList.remove("hidden")
+    }
+	}
+  detectNavegador()
+  const closeAlert = () => {
+		document.getElementById("alert").classList.add("hidden")
+	}
+</script>

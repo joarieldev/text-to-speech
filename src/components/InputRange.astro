@@ -1,0 +1,11 @@
+---
+interface Props {
+  id:string
+  min: number
+  max: number
+  value: number
+}
+
+const { id, min, max, value } = Astro.props
+---
+<input type="range" id={id} min={min} max={max} value={value} class="w-full my-2 cursor-pointer accent-[#625195] dark:accent-[#CC8EA5]">

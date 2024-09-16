@@ -1,0 +1,40 @@
+---
+import Sun from "../../public/Sun.astro"
+import Moon from "../../public/Moon.astro"
+---
+
+<button onclick="changeTheme()" class="fixed bottom-3 right-3 p-1 group transition">
+  <Sun id="sun" class="hidden size-6 sm:size-8 text-yellow-500 group-hover:scale-110 group-active:scale-100" />
+  <Moon id="moon" class="hidden size-6 sm:size-8 text-gray-200 group-hover:scale-110 group-active:scale-100" />
+</button>
+
+<script is:inline>
+  const changeTheme = () => {
+  const theme = getTheme()
+  if (theme === 'dark') updateTheme('light')
+  if (theme === 'light') updateTheme('dark') 
+  }
+  const getTheme = () => {
+    const themeStorage = localStorage.getItem('theme')
+    if ( themeStorage !== 'undefined' && themeStorage !== null ) {
+      return localStorage.getItem('theme')
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light'
+  }
+  const updateTheme = (theme) => {
+    localStorage.setItem('theme', theme)
+    if(theme === 'dark') {
+      document.documentElement.classList.add('dark')
+      document.getElementById('sun').classList.add('hidden')
+      document.getElementById('moon').classList.remove('hidden')
+    }
+    if(theme === 'light') { 
+      document.documentElement.classList.remove('dark')
+      document.getElementById('moon').classList.add('hidden')
+      document.getElementById('sun').classList.remove('hidden')
+    }
+  }
+  updateTheme(getTheme())
+</script>
