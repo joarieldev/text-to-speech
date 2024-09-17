@@ -90,8 +90,8 @@ import Button from '../components/Button.astro'
 	let recordController = new AbortController()
 	let idiomaFilter = []
 	let isRecording = false
-	
-	const loadVoices=()=>{
+
+	synth.onvoiceschanged = () => {
 		const mySet = new Set()
 		synth.getVoices().forEach(voice => {
 			mySet.add(voice.lang)
@@ -212,7 +212,5 @@ import Button from '../components/Button.astro'
 		e.preventDefault()
 		scrollInputRange(e, volumenInput)
 	},{passive:false})
-
-	document.body.onload = loadVoices
 
 </script>
