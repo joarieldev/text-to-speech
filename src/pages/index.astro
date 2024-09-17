@@ -18,27 +18,27 @@ import Button from '../components/Button.astro'
 		<section class="flex flex-col gap-6">
 			<article class="flex gap-6 flex-wrap max-sm:justify-center">
 				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px] dark:text-white">
-					<label>Idioma</label>
+					<label for="idioma">Idioma</label>
 					<InputSelect id="idioma">
 						<option>Sin resultados</option>
 					</InputSelect>
 				</div>
 				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[250px] dark:text-white">
-					<label>Voz</label>
+					<label for="voz">Voz</label>
 					<InputSelect id="voz">
 						<option>Sin resultados</option>
 					</InputSelect>
 				</div>
 				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px] dark:text-white">
-					<label>Tono</label>
+					<label for="tono">Tono</label>
 					<InputRange id="tono" min={0} max={10} value={5} />
 				</div>
 				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px] dark:text-white">
-					<label>Velocidad</label>
+					<label for="velocidad">Velocidad</label>
 					<InputRange id="velocidad" min={0} max={10} value={5}/>
 				</div>
 				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px] dark:text-white">
-					<label>Volumen</label>
+					<label for="volumen">Volumen</label>
 					<InputRange id="volumen" min={0} max={10} value={10}/>
 				</div>
 			</article>
@@ -183,9 +183,9 @@ import Button from '../components/Button.astro'
 		let delay = 0;
 		for (let i = 0; i < 3; i++) {
 			setTimeout(() => {
-				document.getElementById(id).classList.add("border-red-500","dark:border-red-300")
+				document.getElementById(id).classList.add("border-red-500","dark:border-red-400")
 				setTimeout(() => {
-					document.getElementById(id).classList.remove("border-red-500","dark:border-red-300")
+					document.getElementById(id).classList.remove("border-red-500","dark:border-red-400")
 				}, 500);
 			}, delay);
 			delay += 1000
@@ -203,15 +203,15 @@ import Button from '../components/Button.astro'
 	tonoInput.addEventListener("wheel", (e) => {
 		e.preventDefault()
 		scrollInputRange(e, tonoInput)		
-	})
+	},{passive:false})
 	velocidadInput.addEventListener("wheel", (e) => {
 		e.preventDefault()
 		scrollInputRange(e, velocidadInput)
-	})
+	},{passive:false})
 	volumenInput.addEventListener("wheel", (e) => {
 		e.preventDefault()
 		scrollInputRange(e, volumenInput)
-	})
+	},{passive:false})
 
 	document.body.onload = loadVoices
 
