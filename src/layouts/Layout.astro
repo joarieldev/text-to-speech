@@ -1,4 +1,6 @@
 ---
+import BgWindow from '../components/BgWindow.astro'
+
 interface Props {
 	title: string
 	description: string
@@ -17,16 +19,47 @@ const { title, description } = Astro.props
 		<title>{title}</title>
 	</head>
 	<body>
-		<div class="fixed z-[-1] h-full w-full">
-			<div class="relative h-full w-full bg-neutral-100 dark:bg-neutral-900 transition">
-				<div class="absolute inset-0 bg-[#C98BA2] dark:bg-[#605194] bg-[size:20px_20px] opacity-25 blur-[100px] transition"/>
-			</div>
-		</div>
+		<BgWindow />
 		<slot />
 	</body>
 </html>
 <style is:global>
 	:root {
 		font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+		--day: #fffdfa;
+		--evening: #fccc83;
+		--dusk: #db7a2a;
+		--night: #0f131c;
+		--dawn: #16132b;
+		--morning: #9fb3bf;
+
+		--light: var(--day);
+		--dark: var(--night);
+		--shadow: #1a1917;
+		--bounce-light: #f5d7a6;
+
+		--timing-fn: cubic-bezier(0.455, 0.190, 0.000, 0.985);
+
+		--anim-duration: 1s;
+		--anim-name: sunrise;
+		
+		--perspective-opacity: 0.07;
+		--perspective-transform: matrix3d(0.75, -0.0625, 0, 0.0008, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+		--shutters-gap: 60px;
+		--shutter-height: 40px;
+	}
+	html.dark {
+		--light: var(--night);
+		--dark: var(--day);
+		--shadow: #030307;
+		--bounce-light: #1b293f;
+
+		--anim-duration: 1.7s;
+		--anim-name: sunset;;
+
+		--perspective-opacity: 0.4;
+		--perspective-transform: matrix3d(0.8333, 0.0833, 0, 0.0003, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+		--shutters-gap: 20px;
+		--shutter-height: 80px;
 	}
 </style>
