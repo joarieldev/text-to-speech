@@ -18,7 +18,7 @@ const { title, description } = Astro.props
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
+	<body class="bg-[#fccc83] dark:bg-[#16132b] transition">
 		<BgWindow />
 		<slot />
 	</body>
@@ -61,5 +61,9 @@ const { title, description } = Astro.props
 		--perspective-transform: matrix3d(0.8333, 0.0833, 0, 0.0003, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 		--shutters-gap: 20px;
 		--shutter-height: 80px;
+	}
+	body {
+		display: flex;
+		justify-content: center;
 	}
 </style>

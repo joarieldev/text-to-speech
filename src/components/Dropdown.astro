@@ -1,0 +1,48 @@
+---
+interface Props {
+  btnId: string;
+  boxId: string;
+  listId: string;
+}
+
+const { btnId, boxId, listId } = Astro.props;
+---
+
+<button
+  id={btnId}
+  class="inline-flex justify-between items-center w-full p-2 border rounded-lg outline-none focus:border-[#625195] border-white/50 bg-white/40 dark:focus:border-[#CC8EA5] truncate"
+  type="button"
+>
+  <span class="truncate">Sin resultados</span>
+  <svg
+    class="w-2.5 h-2.5 ms-3"
+    aria-hidden="true"
+    fill="none"
+    viewBox="0 0 10 6"
+  >
+    <path
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="m1 1 4 4 4-4"></path>
+  </svg>
+</button>
+<div
+  id={boxId}
+  class="hidden z-10 absolute top-20 border rounded-lg border-white/50 bg-white/40 dark:bg-gray-500/40 w-full max-w-[125px] sm:max-w-[250px] max-h-64 overflow-auto scrollTheme"
+>
+  <ul id={listId} class="py-2 text-sm dark:text-white">
+    <li class="block px-4 py-2 hover:bg-white/40 cursor-pointer truncate">
+      Sin resultados
+    </li>
+  </ul>
+</div>
+
+<style>
+  .scrollTheme {
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff96 #dfdfdf8c;
+    backdrop-filter: blur(10px);
+  }
+</style>

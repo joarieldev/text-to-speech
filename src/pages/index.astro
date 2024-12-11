@@ -4,34 +4,26 @@ import Stop from '../../public/Stop.astro'
 import Record from '../../public/Record.astro'
 import Alert from '../components/Alert.astro'
 import InputRange from '../components/InputRange.astro'
-import InputSelect from '../components/InputSelect.astro'
+import Dropdown from '../components/Dropdown.astro'
 import ThemeToggle from '../components/ThemeToggle.astro'
 import Layout from '../layouts/Layout.astro'
 import Button from '../components/Button.astro'
 ---
 
 <Layout title="TextoVoz" description="Convierte tu texto escrito a voz natural">
-	<main class="container m-auto grid min-h-screen grid-rows-[auto,1fr,auto] px-4 min-w-[320px]">
+	<main class="w-full max-w-screen-lg px-5 max-sm:pt-4 sm:mt-6 m-4 min-w-[320px] rounded-lg bg-white/30 border border-black/10 dark:bg-white/20 dark:border-white/20" style="backdrop-filter: blur(5px);">
 		<header class="text-2xl font-bold leading-[4rem] max-sm:text-xl dark:text-white">
 			TextoVoz
 		</header>
 		<section class="flex flex-col gap-6">
 			<article class="flex gap-6 flex-wrap max-sm:justify-center">
-				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px] dark:text-white">
-					<label for="idioma">Idioma</label>
-					<InputSelect id="idioma">
-						<option>Sin resultados</option>
-					</InputSelect>
+				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px] dark:text-white relative">
+					<label for="btnIdioma">Idioma</label>
+					<Dropdown btnId="btnIdioma" boxId="boxIdioma" listId="idioma" />
 				</div>
-				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[250px] dark:text-white">
-					<label for="voz">Voz</label>
-					<InputSelect id="voz">
-						<option>Sin resultados</option>
-					</InputSelect>
-				</div>
-				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px] dark:text-white">
-					<label for="tono">Tono</label>
-					<InputRange id="tono" min={0} max={10} value={5} />
+				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[250px] dark:text-white relative">
+					<label for="btnVoz">Voz</label>
+					<Dropdown btnId="btnVoz" boxId="boxVoz" listId="voz" />
 				</div>
 				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px] dark:text-white">
 					<label for="velocidad">Velocidad</label>
@@ -42,7 +34,7 @@ import Button from '../components/Button.astro'
 					<InputRange id="volumen" min={0} max={10} value={10}/>
 				</div>
 			</article>
-			<fieldset id="boxArea" class="border p-2 h-full rounded-lg border-gray-900 dark:border-white dark:text-white bg-gray-100 dark:bg-gray-900">
+			<fieldset id="boxArea" class="border p-2 rounded-lg border-white/50 bg-white/40  dark:text-white dark:bg-white/20 dark:border-white/20">
 				<legend>
 					<div class="flex gap-2 justify-center">
 						<Button id="play" title="reproducir">
@@ -57,24 +49,27 @@ import Button from '../components/Button.astro'
 						</Button>
 					</div>
 				</legend>
-				<textarea id="text" placeholder="Aqui tu mensaje de texto" class="p-1 h-full w-full min-h-64 outline-none bg-transparent dark:text-gray-100"/>
+				<textarea id="text" placeholder="Aqui tu mensaje de texto" class="p-1 w-full min-h-64 h-full sm:h-96 outline-none bg-transparent dark:text-gray-100 resize-none"/>
 			</fieldset>
 		</section>
 		<footer class="text-center leading-[2rem] opacity-70 text-sm dark:text-white">
 			Creado por 👨‍💻@joarieldev
 		</footer>
-		<ThemeToggle />
-		<Alert />
 	</main>
+	<ThemeToggle />
+	<Alert />
 </Layout>
 
 <script is:inline>
 	const idiomaSelect = document.getElementById("idioma")
+	const btnIdioma = document.getElementById("btnIdioma")
+	const boxIdioma = document.getElementById("boxIdioma")
 	const vozSelect = document.getElementById("voz")
+	const btnVoz = document.getElementById("btnVoz")
+	const boxVoz = document.getElementById("boxVoz")
 	const playButton = document.getElementById("play")
 	const stopButton = document.getElementById("stop")
 	const recordButton = document.getElementById("record")
-	const tonoInput = document.getElementById("tono")
 	const velocidadInput = document.getElementById("velocidad")
 	const volumenInput = document.getElementById("volumen")
 	const textTextArea = document.getElementById("text")
@@ -96,25 +91,55 @@ import Button from '../components/Button.astro'
 		synth.getVoices().forEach(voice => {
 			mySet.add(voice.lang)
 		})
-		const options = Array.from(mySet).map(item => {
-			return `<option value="${item}">${item}</option>`
+		const esItem = Array.from(mySet).filter(item => item.startsWith("es"))
+		const otherItems = Array.from(mySet).filter(item => !item.startsWith("es"))
+		const options = [...esItem, ...otherItems].map(item => {
+			return `<li class="block px-4 py-2 hover:bg-white/40 cursor-pointer truncate">${item}</li>`
 		})
-		options.unshift('<option>Seleccione</option>');
-		idiomaSelect.innerHTML = options
+		btnIdioma.querySelector("span").innerHTML = 'Seleccione'
+		options.unshift('<li class="block px-4 py-2 hover:bg-white/40 cursor-pointer truncate">Seleccione</li>')
+		idiomaSelect.innerHTML = options.join('')
 	}
-
-	idiomaSelect.addEventListener("change", () => {
-		const value = idiomaSelect.value
-		idiomaFilter = synth.getVoices().filter(item=>item.lang === value)
-		const options = idiomaFilter.map((voice) => {
-			return `<option value="${voice.name}">${voice.name}</option>`
-		})
-		vozSelect.innerHTML = idiomaFilter.length !== 0 ? options : '<option>Sin resultados</option>'
+	
+	btnIdioma.addEventListener("click", () => {
+		event.stopPropagation()
+		boxIdioma.classList.toggle("hidden")
+	})
+	
+	btnVoz.addEventListener("click", () => {
+		event.stopPropagation()
+		boxVoz.classList.toggle("hidden")
 	})
 
-	vozSelect.addEventListener("change", () => {
-		const value = vozSelect.value
-		voiceFind = idiomaFilter.find(item => item.name === value)
+	document.addEventListener("click", (event) => {
+		if (!boxIdioma.classList.contains("hidden")) {
+			boxIdioma.classList.add("hidden");
+		}
+		if (!boxVoz.classList.contains("hidden")) {
+			boxVoz.classList.add("hidden");
+		}
+	});
+	
+	idiomaSelect.addEventListener("click", (e) => {
+		if (e.target.tagName === 'LI') {
+			const value = e.target.textContent
+			idiomaFilter = synth.getVoices().filter(item=>item.lang === value)
+			const options = idiomaFilter.map((voice) => {
+				return `<li class="block px-4 py-2 hover:bg-white/40 cursor-pointer truncate">${voice.name}</li>`
+			})
+			options.unshift('<li class="block px-4 py-2 hover:bg-white/40 cursor-pointer truncate">Seleccione</li>')
+			btnIdioma.querySelector("span").innerHTML = value
+			btnVoz.querySelector("span").innerHTML = idiomaFilter.length !== 0 ? 'Seleccione' : 'Sin resultados'
+			vozSelect.innerHTML = idiomaFilter.length !== 0 ? options.join('') : '<li class="block px-4 py-2 hover:bg-white/40 cursor-pointer truncate">Sin resultados</li>'
+		}
+	})
+
+	vozSelect.addEventListener("click", (e) => {
+		if (e.target.tagName === 'LI') {
+			const value = e.target.textContent
+			voiceFind = idiomaFilter.find(item => item.name === value)
+			btnVoz.querySelector("span").innerHTML = value
+		}
 	})
 
 	playButton.addEventListener("click", () => {
@@ -122,12 +147,11 @@ import Button from '../components/Button.astro'
 		if (isRecording) {
 			endRecording()
 		}
-		const value = vozSelect.value
+		const value = btnVoz.querySelector("span").textContent
 		const voiceFind = idiomaFilter.find(item => item.name === value)
 		if (textTextArea.value !== '' && voiceFind) {
 			message.text = textTextArea.value
 			message.voice = voiceFind
-			message.pitch = tonoInput.value/5
 			message.rate = velocidadInput.value/5
 			message.volume = volumenInput.value/10
 			synth.speak(message)
@@ -200,10 +224,6 @@ import Button from '../components/Button.astro'
 				input.value = Math.max(parseInt(input.value) - 1, input.min)
 		}
 	}
-	tonoInput.addEventListener("wheel", (e) => {
-		e.preventDefault()
-		scrollInputRange(e, tonoInput)		
-	},{passive:false})
 	velocidadInput.addEventListener("wheel", (e) => {
 		e.preventDefault()
 		scrollInputRange(e, velocidadInput)
