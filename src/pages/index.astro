@@ -8,6 +8,7 @@ import Dropdown from '../components/Dropdown.astro'
 import ThemeToggle from '../components/ThemeToggle.astro'
 import Layout from '../layouts/Layout.astro'
 import Button from '../components/Button.astro'
+import ToggleWindow from '../components/ToggleWindow.astro'
 ---
 
 <Layout title="TextoVoz" description="Convierte tu texto escrito a voz natural">
@@ -58,6 +59,7 @@ import Button from '../components/Button.astro'
 	</main>
 	<ThemeToggle />
 	<Alert />
+	<ToggleWindow />
 </Layout>
 
 <style>
@@ -167,8 +169,8 @@ import Button from '../components/Button.astro'
 				warningAnimation("boxArea")
 			}
 			if (!voiceFind) {
-				warningAnimation("idioma")
-				warningAnimation("voz")
+				warningAnimation("btnIdioma")
+				warningAnimation("btnVoz")
 			}
 		}
 	})
@@ -214,9 +216,9 @@ import Button from '../components/Button.astro'
 		let delay = 0;
 		for (let i = 0; i < 3; i++) {
 			setTimeout(() => {
-				document.getElementById(id).classList.add("border-red-500","dark:border-red-400")
+				document.getElementById(id).classList.add("ring-1", "ring-red-500")
 				setTimeout(() => {
-					document.getElementById(id).classList.remove("border-red-500","dark:border-red-400")
+					document.getElementById(id).classList.remove("ring-1", "ring-red-500")
 				}, 500);
 			}, delay);
 			delay += 1000

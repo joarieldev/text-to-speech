@@ -5,7 +5,7 @@ import Moon from "../../public/Moon.astro"
 
 <button aria-label="ThemeToggle" onclick="changeTheme()" class="fixed bottom-3 right-3 p-1 group transition">
   <Sun id="sun" class="hidden size-6 sm:size-8 text-yellow-500 group-hover:scale-110 group-active:scale-100" />
-  <Moon id="moon" class="hidden size-6 sm:size-8 text-gray-200 group-hover:scale-110 group-active:scale-100" />
+  <Moon id="moon" class="hidden size-6 sm:size-8 group-hover:scale-110 group-active:scale-100" />
 </button>
 
 <script is:inline>
@@ -27,13 +27,13 @@ import Moon from "../../public/Moon.astro"
     localStorage.setItem('theme', theme)
     if(theme === 'dark') {
       document.documentElement.classList.add('dark')
-      document.getElementById('sun').classList.add('hidden')
-      document.getElementById('moon').classList.remove('hidden')
+      document.getElementById('sun').classList.remove('hidden')
+      document.getElementById('moon').classList.add('hidden')
     }
     if(theme === 'light') { 
       document.documentElement.classList.remove('dark')
-      document.getElementById('moon').classList.add('hidden')
-      document.getElementById('sun').classList.remove('hidden')
+      document.getElementById('moon').classList.remove('hidden')
+      document.getElementById('sun').classList.add('hidden')
     }
   }
   updateTheme(getTheme())
