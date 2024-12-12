@@ -11,30 +11,30 @@ import Button from '../components/Button.astro'
 ---
 
 <Layout title="TextoVoz" description="Convierte tu texto escrito a voz natural">
-	<main class="w-full max-w-screen-lg px-5 max-sm:pt-4 sm:mt-6 m-4 min-w-[320px] rounded-lg bg-white/30 border border-black/10 dark:bg-white/20 dark:border-white/20" style="backdrop-filter: blur(5px);">
-		<header class="text-2xl font-bold leading-[4rem] max-sm:text-xl dark:text-white">
+	<main class="w-full max-w-screen-lg px-5 max-sm:pt-4 sm:my-12 m-4 min-w-[320px] rounded-lg bg-white/30 border border-black/10 dark:bg-gray-200/20 dark:border-gray-200/20" style="backdrop-filter: blur(8px);">
+		<header class="text-2xl font-bold leading-[4rem] max-sm:text-xl dark:text-white dark:drop-shadow-[0_0_8px_#f3f4f6]">
 			TextoVoz
 		</header>
 		<section class="flex flex-col gap-6">
-			<article class="flex gap-6 flex-wrap max-sm:justify-center">
-				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px] dark:text-white relative">
-					<label for="btnIdioma">Idioma</label>
+			<article class="flex gap-6 flex-wrap max-sm:justify-center dark:text-white">
+				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px] relative">
+					<label for="btnIdioma" class="dark:drop-shadow-[0_0_6px_#f3f4f6]">Idioma</label>
 					<Dropdown btnId="btnIdioma" boxId="boxIdioma" listId="idioma" />
 				</div>
-				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[250px] dark:text-white relative">
-					<label for="btnVoz">Voz</label>
+				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[250px] relative">
+					<label for="btnVoz" class="dark:drop-shadow-[0_0_6px_#f3f4f6]">Voz</label>
 					<Dropdown btnId="btnVoz" boxId="boxVoz" listId="voz" />
 				</div>
-				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px] dark:text-white">
-					<label for="velocidad">Velocidad</label>
+				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px]">
+					<label for="velocidad" class="dark:drop-shadow-[0_0_6px_#f3f4f6]">Velocidad</label>
 					<InputRange id="velocidad" min={0} max={10} value={5}/>
 				</div>
-				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px] dark:text-white">
-					<label for="volumen">Volumen</label>
+				<div class="grid gap-2 w-full max-w-[125px] sm:max-w-[150px]">
+					<label for="volumen" class="dark:drop-shadow-[0_0_6px_#f3f4f6]">Volumen</label>
 					<InputRange id="volumen" min={0} max={10} value={10}/>
 				</div>
 			</article>
-			<fieldset id="boxArea" class="border p-2 rounded-lg border-white/50 bg-white/40  dark:text-white dark:bg-white/20 dark:border-white/20">
+			<fieldset id="boxArea" class="border p-2 rounded-lg border-black/10 bg-white/40  dark:text-white dark:bg-gray-200/20 dark:border-gray-200/20">
 				<legend>
 					<div class="flex gap-2 justify-center">
 						<Button id="play" title="reproducir">
@@ -49,16 +49,23 @@ import Button from '../components/Button.astro'
 						</Button>
 					</div>
 				</legend>
-				<textarea id="text" placeholder="Aqui tu mensaje de texto" class="p-1 w-full min-h-64 h-full sm:h-96 outline-none bg-transparent dark:text-gray-100 resize-none"/>
+				<textarea id="text" placeholder="Aqui tu mensaje de texto" class="p-1 w-full min-h-64 h-full sm:h-96 outline-none bg-transparent dark:text-white resize-none dark:drop-shadow-[0_0_8px_#f3f4f6] txt-area-scroll placeholder:dark:text-gray-200/50"/>
 			</fieldset>
 		</section>
-		<footer class="text-center leading-[2rem] opacity-70 text-sm dark:text-white">
+		<footer class="text-center leading-[2rem] text-sm text-black/70 dark:text-white/70 dark:drop-shadow-[0_0_4px_rgb(229,231,235,0.7)]">
 			Creado por 👨‍💻@joarieldev
 		</footer>
 	</main>
 	<ThemeToggle />
 	<Alert />
 </Layout>
+
+<style>
+	.txt-area-scroll {
+		scrollbar-width: thin;
+    scrollbar-color: #ffffff96 #dfdfdf8c;
+	}
+</style>
 
 <script is:inline>
 	const idiomaSelect = document.getElementById("idioma")

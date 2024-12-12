@@ -7,6 +7,6 @@ interface Props{
 
 const { id, title, classAlt } = Astro.props
 ---
-<button id={id} type="button" title={title} class={`bg-white/70 border rounded-lg p-2 group border-white/50 ${classAlt}`}>
+<button id={id} type="button" title={title} class={`bg-white/70 border rounded-lg p-2 group border-black/10 dark:border-gray-100/70 ${classAlt}`}>
   <slot />
 </button>
